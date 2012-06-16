@@ -14,4 +14,9 @@ Gem::Specification.new do |gem|
   gem.name          = "gecko-pusher"
   gem.require_paths = ["lib"]
   gem.version       = Gecko::Pusher::VERSION
+
+  gem.add_development_dependency "rspec", "~> 2.10"
+  gem.add_development_dependency "vcr", "~> 2.2"
+  gem.add_development_dependency "webmock", "~> 1.8.7"
+  gem.add_development_dependency "guard-rspec", "~> 1.0"
 end
