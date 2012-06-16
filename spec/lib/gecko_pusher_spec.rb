@@ -3,14 +3,17 @@ require 'spec_helper'
 describe Gecko::Pusher do
 
   describe "Creating a channel" do
-    context "without an API key set" do
+    context "without setting an API key" do
+      before(:each) do
+        Gecko::Pusher.api_key = nil
+      end
       it "should raise a Gecko::Pusher::NotInitializedError" do
         expect {
           Gecko::Pusher.channel(:text, "widget_key")
         }.should raise_error(Gecko::Pusher::NotInitializedError)
       end
     end
-    context "with an API key set" do
+    context "after setting an API key" do
       before(:each) do
         Gecko::Pusher.api_key = "ABC123"
       end

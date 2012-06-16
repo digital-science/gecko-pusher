@@ -30,7 +30,7 @@ or set the following environment variable - Gecko::Pusher will pick it up
 
 ### Setting up a channel
 
-    channel = Gecko::Pusher.channel('widget_key', :linechart)
+    channel = Gecko::Pusher.channel(:text, "<your widget key>")
 
 Second parameter options:
 
@@ -38,10 +38,10 @@ Second parameter options:
     :map
     :number
     :rag
-    :ragcol
-    :linechart
-    :piechart
-    :geckometer
+    :rag_col
+    :line_chart
+    :pie_chart
+    :gecko_meter
     :funnel
     :bullet
 

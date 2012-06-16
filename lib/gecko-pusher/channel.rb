@@ -1,7 +1,1 @@
-module Gecko
-  module Pusher
-    class Channel
-
-    end
-  end
-end
+%w{base text}.each {|f| require "gecko-pusher/channel/#{f}"}
