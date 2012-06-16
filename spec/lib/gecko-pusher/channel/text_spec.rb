@@ -15,20 +15,20 @@ describe Gecko::Pusher::Channel::Text do
     @channel.should be_a(Gecko::Pusher::Channel::Text)
   end
   it "should push a single plain message" do
-    stub_request(:post, "https://push.geckoboard.com/v1/send/text_widget").
-      with(:body => "{\"api_key\":\"api_key\",\"data\":{\"item\":[{\"text\":\"Message\",\"type\":0}]}}", :headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+    stub = stub_request(:post, "https://push.geckoboard.com/v1/send/text_widget").
+      with(
+        :body => {
+          api_key: API_KEY,
+          data: {
+            item: [
+              { text: "Message", type: 0 }
+            ]
+          }
+        }.to_json,
+        :headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
       to_return(:status => 200, :body => "", :headers => {})
     
     @channel.push("Message")
-    WebMock.should have_requested(:post, "https://push.geckoboard.com/v1/send/#{WIDGET_KEY}").with(
-      :body => {
-        api_key: API_KEY,
-        data: {
-          item: [
-            { text: "Message", type: 0 }
-          ]
-        }
-      }.to_json
-    )
+    stub.should have_been_requested
   end
 end
