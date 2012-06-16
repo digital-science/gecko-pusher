@@ -2,6 +2,8 @@
 
 Provides a simple library to send updates to GeckoBoard via its push API
 
+PLEASE NOTE: at present this README is a spec - the library does not implement all these features yet.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -28,7 +30,7 @@ or set the following environment variable - Gecko::Pusher will pick it up
 
 ### Setting up a channel
 
-    channel = Gecko::Pusher::Channel.new('widget_key', :linechart)
+    channel = Gecko::Pusher.channel('widget_key', :linechart)
 
 Second parameter options:
 
@@ -47,7 +49,12 @@ Creating a channel with an missing or invalid type will cause an ArgumentError t
 
 ### Sending a message to a channel
 
-Simple. Call push on the channel with a Ruby hash that matches the expected payload for the channel, as specified at http://docs.geckoboard.com/api/custom-widgets.html (for widgets) and http://docs.geckoboard.com/api/custom-charts.html (for charts).
+Creating a channel returns an object that makes it easy to send messages to Geckoboard without having to manually create the JSON. Rather, the push method will parse your args in (hopefully) a manner that makes sense. So, text widgets (when you use the :text option) will understand the following:
+
+    channel.push("Message")                                     // Single plain message
+    channel.push("Message", Gecko::Pusher::ALERT)               // Single alert message
+    channel.push("One", "Two", "Three")                         // Multiple plain messages
+    channel.push("One", "Two", "Three", Gecko::Pusher::ALERT)   // Muliple alert messages
 
 ## Contributing
 
