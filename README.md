@@ -51,10 +51,15 @@ Creating a channel with an missing or invalid type will cause an ArgumentError t
 
 Creating a channel returns an object that makes it easy to send messages to Geckoboard without having to manually create the JSON. Rather, the push method will parse your args in (hopefully) a manner that makes sense. So, text widgets (when you use the :text option) will understand the following:
 
-    channel.push("Message")                                     // Single plain message
-    channel.push("Message", Gecko::Pusher::ALERT)               // Single alert message
-    channel.push("One", "Two", "Three")                         // Multiple plain messages
-    channel.push("One", "Two", "Three", Gecko::Pusher::ALERT)   // Muliple alert messages
+    channel.push("Message")                                         // Single plain message
+    channel.push(Gecko::Pusher::TEXT_ALERT, "Message")              // Single alert message
+    channel.push("One", "Two", "Three")                             // Multiple plain messages
+    channel.push(Gecko::Pusher::TEXT_ALERT, "One", "Two", "Three")  // Muliple alert messages
+    channel.push(
+      [ Gecko::Pusher::TEXT_ALERT, "One", "Two" ],
+      [ Gecko::Pusher::TEXT_INFO, "Three", "Four" ],
+      [ "Five", "Six"]
+    )                                                               // Multiple different message types, one type per array (default: Gecko::Pusher::TEXT_PLAIN)
 
 ## Contributing
 
