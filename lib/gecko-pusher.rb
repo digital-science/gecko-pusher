@@ -7,10 +7,15 @@ require 'gecko-pusher/version'
 module Gecko
   module Pusher
 
-      CHANNEL_TYPES = [
-        :text, :map, :number, :rag, :rag_col, :line_chart,
-        :pie_chart, :gecko_meter, :funnel, :bullet
-      ]
+    CHANNEL_TYPES = [
+      :text, :map, :number, :rag, :rag_col, :line_chart,
+      :pie_chart, :gecko_meter, :funnel, :bullet
+    ]
+
+    TEXT_NONE = 0
+    TEXT_ALERT = 1
+    TEXT_INFO = 2
+    TEXT_TYPES = [TEXT_NONE, TEXT_ALERT, TEXT_INFO]
 
     class NotInitializedError < StandardError
     end

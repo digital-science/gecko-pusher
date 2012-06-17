@@ -11,7 +11,17 @@ module Gecko
         private
 
           def extract_items(*args)
-            args.map {|arg| {text: arg, type: 0} }
+            message_type, messages = extract_message_type_and_messages(*args)
+            messages.map {|arg| {text: arg, type: message_type} }
+          end
+
+          def extract_message_type_and_messages(*args)
+            text_type = args.first.is_a?(Integer) ? args.shift : Gecko::Pusher::TEXT_NONE
+            [text_type, args]
+          end
+
+          def multiple_types?(*args)
+
           end
       end
     end

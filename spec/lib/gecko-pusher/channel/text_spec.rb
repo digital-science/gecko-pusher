@@ -24,6 +24,16 @@ describe Gecko::Pusher::Channel::Text do
     @channel.push("Message")
     stub.should have_been_requested
   end
+  it "should push a single ALERT message" do
+    data = {
+      item: [
+        { text: "Message", type: 1 }
+      ]
+    }
+    stub = stub_gecko_post(WIDGET_KEY, data)
+    @channel.push(Gecko::Pusher::TEXT_ALERT, "Message")
+    stub.should have_been_requested
+  end
   it "should push multiple plain messages" do
     data = {
       item: [
