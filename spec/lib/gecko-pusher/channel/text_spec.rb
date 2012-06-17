@@ -24,4 +24,16 @@ describe Gecko::Pusher::Channel::Text do
     @channel.push("Message")
     stub.should have_been_requested
   end
+  it "should push multiple plain messages" do
+    data = {
+      item: [
+        { text: "Message 1", type: 0 },
+        { text: "Message 2", type: 0 },
+        { text: "Message 3", type: 0 }
+      ]
+    }
+    stub = stub_gecko_post(WIDGET_KEY, data)
+    @channel.push("Message 1", "Message 2", "Message 3")
+    stub.should have_been_requested
+  end
 end

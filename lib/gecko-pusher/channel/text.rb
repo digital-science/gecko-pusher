@@ -4,11 +4,15 @@ module Gecko
       class Text < Base
 
         def push(*args)
-          data = {
-            item: [{text: args.first, type: 0}]
-          }
+          data = { item: extract_items(*args) }
           _push(data)
         end
+
+        private
+
+          def extract_items(*args)
+            args.map {|arg| {text: arg, type: 0} }
+          end
       end
     end
   end
