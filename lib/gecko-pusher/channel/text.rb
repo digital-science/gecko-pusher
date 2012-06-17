@@ -4,6 +4,7 @@ module Gecko
       class Text < Base
 
         def push(*args)
+          return if args.empty?
           data = { item: extract_items(*args) }
           _push(data)
         end
@@ -17,6 +18,7 @@ module Gecko
 
           def extract_message_type_and_messages(*args)
             text_type = args.first.is_a?(Integer) ? args.shift : Gecko::Pusher::TEXT_NONE
+            args.delete_if {|arg| arg.is_a? Integer}
             [text_type, args]
           end
 
