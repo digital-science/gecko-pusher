@@ -32,7 +32,7 @@ or set the following environment variable - Gecko::Pusher will pick it up
 
     channel = Gecko::Pusher.channel(:text, "<your widget key>")
 
-Second parameter options:
+First parameter options:
 
     :text
     :map
@@ -60,6 +60,6 @@ Creating a channel returns an object that makes it easy to send messages to Geck
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
+3. Commit your changes with specs to ensure resilience to regressions (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
