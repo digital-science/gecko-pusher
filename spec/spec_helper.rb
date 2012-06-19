@@ -9,6 +9,7 @@ RSpec.configure do |config|
 end
 
 API_KEY = "187249817294871"
+WIDGET_KEY = "rag_widget"
 
 def stub_gecko_post(widget_key, data)
   url = "https://push.geckoboard.com/v1/send/#{widget_key}"

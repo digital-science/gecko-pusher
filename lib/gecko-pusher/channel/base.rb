@@ -12,7 +12,6 @@ module Gecko
         protected
           
           def _push(data)
-            puts data.inspect
             payload = {
               api_key: Gecko::Pusher.api_key,
               data: data

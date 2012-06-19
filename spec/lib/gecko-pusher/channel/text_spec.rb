@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe Gecko::Pusher::Channel::Text do
 
-  API_KEY = "api_key"
-  WIDGET_KEY = "text_widget"
-
   before(:each) do
     WebMock.reset!
     Gecko::Pusher.api_key = API_KEY

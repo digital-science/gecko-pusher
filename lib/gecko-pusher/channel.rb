@@ -1,1 +1,1 @@
-%w{base text}.each {|f| require "gecko-pusher/channel/#{f}"}
+%w{base text rag}.each {|f| require "gecko-pusher/channel/#{f}"}
