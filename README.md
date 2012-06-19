@@ -68,6 +68,10 @@ Creating a channel returns an object that makes it easy to send messages to Geck
     channel.push(:green, 100)                                     // Just push a green value
     channel.push(:green, 100, "Description")                      // Push a green value with a description
 
+### Line charts
+
+    channel.push(1,2,3,4,5)
+
 ## Contributing
 
 1. Fork it
