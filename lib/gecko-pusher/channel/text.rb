@@ -12,8 +12,15 @@ module Gecko
         private
 
           def extract_items(*args)
-            message_type, messages = extract_message_type_and_messages(*args)
-            messages.map {|arg| {text: arg, type: message_type} }
+            message_groups = multiple_types?(*args) ? args : [args]
+            items = []
+            message_groups.each do |message_group|
+              message_type, messages = extract_message_type_and_messages(*message_group)
+              messages.each {|msg| 
+                items << {text: msg, type: message_type} 
+              }
+            end
+            items
           end
 
           def extract_message_type_and_messages(*args)
@@ -23,7 +30,15 @@ module Gecko
           end
 
           def multiple_types?(*args)
+            unless args.select {|arg| arg.is_a? Array }.empty?
+              raise_argument_error_if_arguments_contain_non_array(*args)
+              return true
+            end
+            false
+          end
 
+          def raise_argument_error_if_arguments_contain_non_array(*args)
+            raise ArgumentError.new("Must call with a single message type or an array of message types.\nArgs: #{args.inspect.to_s}") unless args.reject {|arg| arg.is_a? Array }.empty?
           end
       end
     end
