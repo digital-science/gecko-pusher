@@ -33,4 +33,19 @@ describe Gecko::Pusher::Channel::LineChart do
     stub.should have_been_requested
   end
 
+  it "should push values with axis options" do
+    data = {
+      item: [1,2,3,4,5],
+      settings: {
+        colour: "#FFFFFF",
+        axisx: ["Mon", "Tues", "Wed"],
+        axisy: ["1", "2", "3"]
+      }
+    }
+    stub = stub_gecko_post(WIDGET_KEY, data)
+    @channel.push([1,2,3,4,5], colour: "#FFFFFF", axisy: ["1", "2", "3"], axisx: ["Mon", "Tues", "Wed"])
+    stub.should have_been_requested
+
+  end
+
 end

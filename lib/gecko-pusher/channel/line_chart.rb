@@ -9,7 +9,9 @@ module Gecko
           }
           unless options.empty?
             data[:settings] = {}
-            data[:settings][:colour] = options[:colour ] if options[:colour]
+            [:colour, :axisx, :axisy].each do |setting|
+              data[:settings][setting] = options[setting] if options[setting]
+            end 
           end
           _push(data)
         end
