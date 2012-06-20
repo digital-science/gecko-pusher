@@ -17,7 +17,19 @@ describe Gecko::Pusher::Channel::LineChart do
       item: [ 1,2,3,4,5 ]
     }
     stub = stub_gecko_post(WIDGET_KEY, data)
-    @channel.push(1,2,3,4,5)
+    @channel.push([1,2,3,4,5])
+    stub.should have_been_requested
+  end
+
+  it "should push values with line colour" do
+    data = {
+      item: [1,2,3,4,5],
+      settings: {
+        colour: "#FFFFFF"
+      }
+    }
+    stub = stub_gecko_post(WIDGET_KEY, data)
+    @channel.push([1,2,3,4,5], colour: "#FFFFFF")
     stub.should have_been_requested
   end
 

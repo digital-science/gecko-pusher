@@ -3,10 +3,14 @@ module Gecko
     module Channel
       class LineChart < Base
 
-        def push(*args)
+        def push(points, options = {})
           data = {
-            item: args
+            item: points
           }
+          unless options.empty?
+            data[:settings] = {}
+            data[:settings][:colour] = options[:colour ] if options[:colour]
+          end
           _push(data)
         end
 
