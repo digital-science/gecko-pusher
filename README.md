@@ -74,6 +74,13 @@ Creating a channel returns an object that makes it easy to send messages to Geck
     channel.push([1,2,3,4,5], colour: "#FF0000")                    // Push values with colour set
     channel.push([1,2,3,4,5], colour: "#FF0000", axisx: ['1','2'])  // Push values with colour and X-axis labels set
 
+### Numbers
+
+    channel.push(10)                                      // push number
+    channel.push(10, 20)                                  // push number and secondary stat
+    channel.push(10, "Today", 20, "Yesterday")            // push number and secondary stat with descriptions
+    channel.push(10, 20, absolute: true, type: reverse)   // push with options
+
 ## Contributing
 
 1. Fork it
