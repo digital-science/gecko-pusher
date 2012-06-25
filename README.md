@@ -70,7 +70,9 @@ Creating a channel returns an object that makes it easy to send messages to Geck
 
 ### Line charts
 
-    channel.push(1,2,3,4,5)
+    channel.push([1,2,3,4,5])                                       // Push raw values, no settings
+    channel.push([1,2,3,4,5], colour: "#FF0000")                    // Push values with colour set
+    channel.push([1,2,3,4,5], colour: "#FF0000", axisx: ['1','2'])  // Push values with colour and X-axis labels set
 
 ## Contributing
 
