@@ -44,4 +44,18 @@ describe Gecko::Pusher::Channel::Rag do
     @channel.push(123, "This week", 456, "Last week")
     stub.should have_been_requested
   end
+  it "should push options" do
+    data = {
+      item: [
+        { value: 123 },
+        { value: 456 }
+      ],
+      type: "reverse",
+      absolute: true
+    }
+    stub = stub_gecko_post(WIDGET_KEY, data)
+    @channel.push(123, 456, type: "reverse", absolute: true)
+    stub.should have_been_requested
+    
+  end
 end

@@ -4,31 +4,38 @@ module Gecko
       class Number < Base
 
         def push(*args)
-          data = {item: extract_values(*args)}
+          options = extract_options(args)
+          data = {item: extract_values(args)}
+          data[:type] = options[:type] unless options[:type].nil?
+          data[:absolute] = options[:absolute] unless options[:absolute].nil?
           _push(data)
         end
 
         protected
 
-          def extract_values(*args)
-            values = if just_values?(*args)
+          def extract_values(args)
+            values = if just_values?(args)
                        args.map {|arg| {value: arg}}
-                     elsif values_and_descriptions?(*args)
+                     elsif values_and_descriptions?(args)
                        args.each_slice(2).map {|arg| 
                          {value: arg.first, text: arg.last}
                        }
                      end
           end
 
-          def just_values?(*args)
+          def just_values?(args)
             (args.length == 1 || args.length == 2) &&
               args.all? {|arg| arg.is_a?(Integer)}
           end
 
-          def values_and_descriptions?(*args)
+          def values_and_descriptions?(args)
             (args.length == 2 || args.length == 4) &&
               args[0].is_a?(Integer) && args[1].is_a?(String) &&
               args[2].is_a?(Integer) && args[3].is_a?(String)
+          end
+
+          def extract_options(args)
+            args.last.is_a?(Hash) ? args.pop : {}
           end
       end
     end
