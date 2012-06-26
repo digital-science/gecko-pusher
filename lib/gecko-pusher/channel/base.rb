@@ -22,6 +22,10 @@ module Gecko
             end
           end
 
+          def extract_options(args)
+            args.last.is_a?(Hash) ? args.pop : {}
+          end
+
       end
     end
   end

@@ -33,10 +33,6 @@ module Gecko
               args[0].is_a?(Integer) && args[1].is_a?(String) &&
               args[2].is_a?(Integer) && args[3].is_a?(String)
           end
-
-          def extract_options(args)
-            args.last.is_a?(Hash) ? args.pop : {}
-          end
       end
     end
   end

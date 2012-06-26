@@ -14,7 +14,7 @@ module Gecko
           _push(data)
         end
 
-        private
+        protected
           
           def is_basic_rag?(*args)
             args.length == 3 && args.all? {|arg| arg.is_a? Integer}
