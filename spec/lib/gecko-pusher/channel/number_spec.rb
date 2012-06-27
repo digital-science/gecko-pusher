@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Gecko::Pusher::Channel::Rag do
+describe Gecko::Pusher::Channel::Number do
 
   before(:each) do
     WebMock.reset!

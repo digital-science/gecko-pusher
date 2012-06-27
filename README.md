@@ -81,6 +81,33 @@ Creating a channel returns an object that makes it easy to send messages to Geck
     channel.push(10, "Today", 20, "Yesterday")            // push number and secondary stat with descriptions
     channel.push(10, 20, absolute: true, type: reverse)   // push with options
 
+### Maps
+
+For basic, uncoloured, uniformly sized points, the API is dirt simple:
+
+    channel.push("192.168.0.1")                             // Push IP address
+    channel.push([-51.424, 0.02323])                        // Push Lat/Long
+    channel.push({city_name: "London", country_code: "GB"}) // Push address
+    channel.push("host.dsci.it")                            // Push hostname
+    channel.push("192.168.0.1", [-51.424, 0.02323]...)      // Push any combination of above as multiple args
+
+If you want to embellish points with additional styling information, you have to do a bit more work, with each element
+an array, the first element being as above, the second element being the point options. You can mix/match the two ways - the API
+will figure it out:
+
+    channel.push(["192.168.0.1", {colour: "FF0000", size: 3}])            // Push IP address
+    channel.push([[-51.424, 0.02323], {size: 8}])                         // Push Lat/Long
+    channel.push([{city_name: "London", country_code: "GB"}, {...}])      // Push address
+    channel.push(["host.dsci.it", {colour: "00FF00"}])                    // Push hostname
+    channel.push(["192.168.0.1", {colour: "FF0000", size: 3}],
+                 [[-51.424, 0.02323], {size: 8}])                         // Push any combination of above as multiple args
+
+    channel.push("192.168.0.1",
+                 [{city_name: "London", country_code: "GB"}, {...}],
+                 ["host.dsci.it", {colour: "00FF00"}],
+                 [-51.424, 0.02323],
+                 ...)
+
 ## Contributing
 
 1. Fork it

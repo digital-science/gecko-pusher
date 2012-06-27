@@ -39,3 +39,7 @@ module Gecko
     end
   end
 end
+
+if ENV['GECKO_PUSHER_APIKEY']
+  Gecko::Pusher::api_key = ENV['GECKO_PUSHER_APIKEY']
+end
