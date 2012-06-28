@@ -68,6 +68,26 @@ describe Gecko::Pusher::Channel::Map do
       @channel.push("gecko.dsci.it")
       stub.should have_been_requested
     end
+
+    it "should push multiple values" do
+      data = {
+        points: {
+          point: [
+            {host: "gecko.dsci.it"},
+            {ip: "1.2.3.4"},
+            {latitude: "51.0001",longitude: "-51.0001"}
+          ]
+        }
+      }
+      stub = stub_gecko_post(WIDGET_KEY, data)
+      @channel.push(
+        "gecko.dsci.it",
+        "1.2.3.4",
+        [51.0001, -51.0001]
+      )
+      stub.should have_been_requested
+
+    end
   end
 
 end
