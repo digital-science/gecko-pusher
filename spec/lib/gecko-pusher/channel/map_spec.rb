@@ -55,6 +55,19 @@ describe Gecko::Pusher::Channel::Map do
       @channel.push({city_name: "London", country_code: "GB"})
       stub.should have_been_requested
     end
+
+    it "should push a hostname" do
+      data = {
+        points: {
+          point: [
+            {host: "gecko.dsci.it"}
+          ]
+        }
+      }
+      stub = stub_gecko_post(WIDGET_KEY, data)
+      @channel.push("gecko.dsci.it")
+      stub.should have_been_requested
+    end
   end
 
 end

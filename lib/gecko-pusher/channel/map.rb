@@ -11,6 +11,8 @@ module Gecko
               {latitude: arg[0].to_s, longitude: arg[1].to_s}
             elsif address?(arg)
               {city: arg}
+            elsif hostname?(arg)
+              {host: arg}
             end
           }
 
@@ -32,6 +34,10 @@ module Gecko
           def address?(point_data)
             point_data.is_a?(Hash) &&
               point_data.keys.all? {|k| [:city_name, :region_code, :country_code].include?(k)}
+          end
+
+          def hostname?(point_data)
+            point_data.is_a?(String)
           end
       end
     end
