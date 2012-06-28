@@ -90,4 +90,34 @@ describe Gecko::Pusher::Channel::Map do
     end
   end
 
+  context "pushing values with additional metadata" do
+
+    it "should raise ArgumentError if invalid point option passed" do
+      expect {
+        @channel.push(["gecko.dsci.it", {not_an_option: 8}])
+      }.should raise_error(ArgumentError)
+    end
+
+    it "should push multiple values" do
+      data = {
+        points: {
+          point: [
+            {host: "gecko.dsci.it", size: 8},
+            {ip: "1.2.3.4", color: "ff0000"},
+            {latitude: "51.0001",longitude: "-51.0001", cssClass: "classname"}
+          ]
+        }
+      }
+      stub = stub_gecko_post(WIDGET_KEY, data)
+      @channel.push(
+        ["gecko.dsci.it", {size: 8}],
+        ["1.2.3.4", {color: "ff0000"}],
+        [[51.0001, -51.0001], {cssClass: "classname"}]
+      )
+      stub.should have_been_requested
+
+    end
+
+  end
+
 end

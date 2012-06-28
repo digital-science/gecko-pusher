@@ -5,14 +5,22 @@ module Gecko
 
         def push(*args)
           data = args.map {|arg|
-            if ip_address?(arg)
-              {ip: arg}
-            elsif lat_long?(arg)
-              {latitude: arg[0].to_s, longitude: arg[1].to_s}
-            elsif address?(arg)
-              {city: arg}
-            elsif hostname?(arg)
-              {host: arg}
+            point_data, options = if arg.is_a?(Array) &&
+                                    arg.length == 2 &&
+                                    arg.last.is_a?(Hash)
+                                    [arg.first, check_options(arg.last)]
+                                  else
+                                    [arg, {}]
+                                  end
+
+            if ip_address?(point_data)
+              {ip: point_data}.merge(options)
+            elsif lat_long?(point_data)
+              {latitude: point_data[0].to_s, longitude: point_data[1].to_s}.merge(options)
+            elsif address?(point_data)
+              {city: point_data}.merge(options)
+            elsif hostname?(point_data)
+              {host: point_data}.merge(options)
             end
           }
 
@@ -20,6 +28,13 @@ module Gecko
         end
 
         protected
+
+          def check_options(options)
+            raise ArgumentError unless options.keys.all? {|k|
+              [:color, :size, :cssClass].include?(k)
+            }
+            options
+          end
 
           def ip_address?(point_data)
             point_data.is_a?(String) &&
