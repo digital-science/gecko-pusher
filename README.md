@@ -108,6 +108,12 @@ will figure it out:
                  [-51.424, 0.02323],
                  ...)
 
+### Gecko Meter
+
+    channel.push(10, 0, 20)                                   // Push basic value, min, max
+    channel.push(10, 0, "Min", 20, "Max")                     // Push values with descriptions
+    channel.push(10, 0, "Min", 20, "Max", type: "reverse")    // Push values, descriptions and options
+
 ## Contributing
 
 1. Fork it
