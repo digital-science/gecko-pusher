@@ -63,10 +63,10 @@ Creating a channel returns an object that makes it easy to send messages to Geck
 
 ### RAG widgets
 
-    channel.push(100, 200, 300)                                   // Pushes RAG values with no description
-    channel.push(100, "desc", 222, "desc", 300 "desc")            // Push RAG values with descriptions
-    channel.push(:green, 100)                                     // Just push a green value
-    channel.push(:green, 100, "Description")                      // Push a green value with a description
+    channel.push(100, 200, 300)                        // Pushes RAG values with no description
+    channel.push(100, "desc", 222, "desc", 300 "desc") // Push RAG values with descriptions
+    channel.push(:green, 100)                          // Just push a green value
+    channel.push(:green, 100, "Description")           // Push a green value with a description
 
 ### Line charts
 
@@ -95,12 +95,12 @@ If you want to embellish points with additional styling information, you have to
 an array, the first element being as above, the second element being the point options. You can mix/match the two ways - the API
 will figure it out:
 
-    channel.push(["192.168.0.1", {colour: "FF0000", size: 3}])            // Push IP address
-    channel.push([[-51.424, 0.02323], {size: 8}])                         // Push Lat/Long
-    channel.push([{city_name: "London", country_code: "GB"}, {...}])      // Push address
-    channel.push(["host.dsci.it", {colour: "00FF00"}])                    // Push hostname
+    channel.push(["192.168.0.1", {colour: "FF0000", size: 3}])       // Push IP address
+    channel.push([[-51.424, 0.02323], {size: 8}])                    // Push Lat/Long
+    channel.push([{city_name: "London", country_code: "GB"}, {...}]) // Push address
+    channel.push(["host.dsci.it", {colour: "00FF00"}])               // Push hostname
     channel.push(["192.168.0.1", {colour: "FF0000", size: 3}],
-                 [[-51.424, 0.02323], {size: 8}])                         // Push any combination of above as multiple args
+    [[-51.424, 0.02323], {size: 8}])                                 // Push any combination of above as multiple args
 
     channel.push("192.168.0.1",
                  [{city_name: "London", country_code: "GB"}, {...}],

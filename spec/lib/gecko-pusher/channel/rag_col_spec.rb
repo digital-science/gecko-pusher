@@ -15,9 +15,9 @@ describe Gecko::Pusher::Channel::RagCol do
   it "should push RAG values" do
     data = {
       item: [
-        { value: 100 },
-        { value: 200 },
-        { value: 300 }
+        { value: 100, text: "" },
+        { value: 200, text: "" },
+        { value: 300, text: "" }
       ]
     }
     stub = stub_gecko_post(WIDGET_KEY, data)

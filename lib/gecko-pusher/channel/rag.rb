@@ -5,7 +5,9 @@ module Gecko
 
         def push(*args)
           data = if is_basic_rag?(*args)
-            { item: [ { value: args[0] }, { value: args[1] }, { value: args[2] } ] }
+            { item: [ { value: args[0], text: "" },
+							{ value: args[1], text: "" },
+							{ value: args[2], text: "" } ] }
                  elsif is_basic_rag_with_descriptions?(*args)
             { item: [ { value: args[0], text: args[1] },
               { value: args[2], text: args[3]},
