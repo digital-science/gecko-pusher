@@ -74,6 +74,11 @@ Creating a channel returns an object that makes it easy to send messages to Geck
     channel.push([1,2,3,4,5], colour: "#FF0000")                    // Push values with colour set
     channel.push([1,2,3,4,5], colour: "#FF0000", axisx: ['1','2'])  // Push values with colour and X-axis labels set
 
+### Pie charts
+Each slice of the pie has three attributes: value, label and colour. The last two digits in the hex colour are for transparancy and are optional.
+
+    channel.push([100, 'May', 'FFFF10AA'], [160, 'June', 'FFAA0AAA'])
+
 ### Numbers
 
     channel.push(10)                                      // push number
