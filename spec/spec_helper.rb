@@ -19,6 +19,6 @@ def stub_gecko_post(widget_key, data)
         api_key: API_KEY,
         data: data
       }.to_json,
-      :headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      :headers => {'Accept'=>'*/*', 'User-Agent'=>'Faraday v0.8.7'}).
     to_return(:status => 200, :body => "", :headers => {})
 end
